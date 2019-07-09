@@ -6,6 +6,16 @@ Welcom to TODO!
 
 {% block content %}
 <dev class="container">
-	
+	<dev class="row">
+		<div class="col-4" id="column1">
+			<a href="{% url 'general_signup' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">一般ユーザー登録</a>
+		</div>
+		<div class="col-4" id="column1">
+			<a href="{% url 'login' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">ログイン</a>
+		</div>
+		<div class="col-4" id="column1">
+			<a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">コアユーザー登録</a>
+		</div>
+	</dev>
 </dev>
 {% endblock content %}

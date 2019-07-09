@@ -26,7 +26,7 @@ def general_signup_func(request):
 ### ログイン
 def login_func(request):
 	if request.method == 'POST':
-		login_username = requset.POST['username']
+		login_username = request.POST['username']
 		#login_user_email = request.POST['mail_address']
 		login_password = request.POST['password']
 
@@ -42,7 +42,7 @@ def login_func(request):
 @login_required
 def home_func(request):
 	room_list = RoomModel.object.all()
-	return render(requet, 'home.html', {'room_list': room_list})
+	return render(request, 'home.html', {'room_list': room_list})
 
 ### ログアウト
 def logout_func(request):
