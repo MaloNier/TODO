@@ -7,6 +7,10 @@ from django.urls import reverse_lazy
 from .models import ChatModel, RoomModel
 
 
+### index.htmlを表示
+def index_func(request):
+	return render(request, 'index.html')
+
 ### 一般ユーザー登録
 def general_signup_func(request):
 	if request.method == 'POST':

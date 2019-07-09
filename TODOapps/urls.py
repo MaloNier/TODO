@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import general_signup_func, login_func, home_func, logout_func, good_func, RoomCreate
+from .views import index_func, general_signup_func, login_func, home_func, logout_func, good_func, RoomCreate
 
 urlpatterns = [
+	path('index.html/', index_func, name='index'),
 	path('general_signup/', general_signup_func, name='general_signup'),
 	path('login/', login_func, name='login'),
 	path('home/', home_func, name='home'),
