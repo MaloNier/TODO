@@ -5,5 +5,12 @@ Welcom to TODO!
 {% endblock title %}
 
 {% block content %}
-
+	<div class="container">
+		<a href="{% url 'room_create' %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">ルーム作成</a>
+		{% for room in room_list %}
+			<div class="alert alert-primary" role="alert">
+				<a href="{% url 'room' room.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">{{ room.title }}</a>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock content %}
