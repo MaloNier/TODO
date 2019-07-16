@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .models import ChatModel, RoomModel
+from .models import UserManager, User, Meta, ChatModel, RoomModel
 
 
 ### index.htmlを表示
@@ -14,16 +14,15 @@ def index_func(request):
 ### 一般ユーザー登録
 def general_signup_func(request):
 	if request.method == 'POST':
-		new_username = request.POST['username']			# 新規ユーザー名
-		new_user_email = request.POST['mail_address'] 	# 新規ユーザーメールアドレス
+		new_user_email = request.POST['email'] 	# 新規ユーザーメールアドレス
 		new_password = request.POST['password']			# 新規ユーザーパスワード
 
 		# 重複していたらエラー表示
 		try:
-			User.objects.get(username=new_username)
+			User.objects.get(email=new_user_email)
 			return render(request, 'general_signup.html', {'error':'このユーザーは既に登録されています。'})
 		except:
-			user = User.objects.create_user(new_username, email=new_user_email, password=new_password)
+			user = User.objects.create_user(email=new_user_email, password=new_password)
 			return render(request, 'general_signup.html')
 	return render(request, 'general_signup.html')
 
