@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'TODO.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': 'todo_database',
+		'NAME': 'todo_database2',
 		'USER': 'hisa_database',
 		'PASSWORD': 'XVTm3TENewpn',
 		'HOST': 'localhost',
@@ -133,3 +133,5 @@ MDEIA_URL = '/media/'
 
 LOGIN_URL = 'login'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+AUTH_USER_MODEL = 'TODOapps.User'
