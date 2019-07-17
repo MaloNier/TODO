@@ -15,7 +15,7 @@ def index_func(request):
 def general_signup_func(request):
 	if request.method == 'POST':
 		new_user_email = request.POST['email'] 	# 新規ユーザーメールアドレス
-		new_password = request.POST['password']			# 新規ユーザーパスワード
+		new_password = request.POST['password']	# 新規ユーザーパスワード
 
 		# 重複していたらエラー表示
 		try:
@@ -25,6 +25,27 @@ def general_signup_func(request):
 			user = User.objects.create_user(email=new_user_email, password=new_password)
 			return render(request, 'general_signup.html')
 	return render(request, 'general_signup.html')
+
+
+## プライムユーザー登録
+def prime_signup_func(request):
+	if request.method == 'POST':
+		new_user_email = request.POST['email']
+		new_password = request.POST['password']
+		new_user_first_name = request.POST['first_name']
+		new_user_last_name = request.POST['last_name']
+		new_user_username = request.POST['username']
+
+		# 重複していたらエラー表示
+		try:
+			User.objects.get(email=new_user_email)
+			return render(request, 'prime_signup.html', {'error':'このユーザーは既に登録されています。'})
+		except:
+			user = User.objects.create_user(email=new_user_email, password=new_password)
+			
+			return render(request, 'prime_signup.html')
+	return render(request, 'prime_signup.html')
+
 
 ### ログイン
 def login_func(request):

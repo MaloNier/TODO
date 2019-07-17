@@ -13,18 +13,18 @@ class UserManager(BaseUserManager):
 
 	use_in_migrations = True	# クラスをRUｎPython操作で利用できるように
 
-	def _create_user(self, email, password, **extra_fields):
+	def _create_user(self, email, password, first_name, last_name, username, **extra_fields):
 		'''メールアドレスでの登録を必須に'''
 		if not email:
 			raise ValueError('メールアドレスの登録は必須です。')
 		email = self.normalize_email(email)
 
-		user = self.model(email=email, **extra_fields)
+		user = self.model(email=email, first_name=first_name, last_name=last_name, username=username, **extra_fields)
 		user.set_password(password)
 		user.save(using=self._db)
 		return user
 
-	def create_user(self, email, password=None, **extra_fields):
+	def create_user(self, email, password=None, first_name=None, last_name=None, username=None, **extra_fields):
 		'''管理者権限全般をFalseに'''
 		extra_fields.setdefault('is_staff', False)
 		extra_fields.setdefault('is_superuser', False)
