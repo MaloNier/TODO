@@ -42,7 +42,7 @@ def prime_signup_func(request):
 			return render(request, 'prime_signup.html', {'error':'このユーザーは既に登録されています。'})
 		except:
 			user = User.objects.create_user(email=new_user_email, password=new_password)
-			
+
 			return render(request, 'prime_signup.html')
 	return render(request, 'prime_signup.html')
 
@@ -50,15 +50,15 @@ def prime_signup_func(request):
 ### ログイン
 def login_func(request):
 	if request.method == 'POST':
-		login_username = request.POST['username']
+		login_user_email = request.POST['email']
 		#login_user_email = request.POST['mail_address']
 		login_password = request.POST['password']
 
-		user = authenticate(request, username=login_username, password=login_password)
-		if user is not None:
+		user = authenticate(request, email=login_user_email, password=login_password)
+		if user is not None:	# ログイン成功
 			login(request, user)
 			return redirect('home')
-		else:
+		else:					# ログイン失敗
 			return redirect('login')
 	return render(request, 'login.html')
 
