@@ -116,6 +116,8 @@ class ChatModel(models.Model):
 	good = models.IntegerField(null=True, blank=True, default=0)	# いいね数
 	good_users = models.TextField(null=True, blank=True, default='')# いいねしたユーザー
 
+	USERNAME_FIELD = ''
+	REQUIRED_FIELDS = []
 
 ### ディスカッションルームのデータモデル
 class RoomModel(models.Model):
@@ -124,3 +126,6 @@ class RoomModel(models.Model):
 	author = models.CharField(max_length=50)	# 設立者
 	images	= models.ImageField(upload_to='')	# 画像
 	positions = models.CharField(max_length=100)# 立場
+
+	USERNAME_FIELD = ''
+	REQUIRED_FIELDS = []
