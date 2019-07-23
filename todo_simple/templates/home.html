@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark md-4">
+	<a class="navbar-brand" href="#">Welcome to TODO!</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expand="true" aria-label="Toggle navigation">
+		<span class=navbar-toggler-icon></span>
+	</button>
+	<div class="navbar-collapse" id="navbarCollapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">
+					+Prime
+					<span class="se-only"></span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'logout' %}">
+					Log Out
+				</a>
+			</li>
+		</ul>
+		<form class="form-inline mt-2 mt-md-0">{% csrf_token %}
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type=submit>Search</button>
+		</form>
+	</div>
+</nav>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+
+	{% for room in room_list %}
+	<div class="alert alert-success" role="alert">
+		<p class="lead">ルーム名: <a href="{% url 'room' room.pk %}">{{ room.title }}</a></p>
+		<p>作成日時: {{ room.duedate }}</p>
+	</div>
+	{% endfor %}
+</div>
+{% endblock content %}

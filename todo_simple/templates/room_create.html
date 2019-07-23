@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+	<p>タイトル: <input type="text" name="title"></p>
+	<p>ポジション1: <input type="text" name="position_1"></p>
+	<p>ポジション2: <input type="text" name="position_2"></p>
+	<p>ポジション3: <input type="text" name="position_3"></p>
+	<p>ポジション4: <input type="text" name="position_4"></p>
+	<p>ポジション5: <input type="text" name="position_5"></p>
+
+	<input type="hidden" name="author" value="{{ user.email }}">
+
+	<input type="submit" value="Create!">
+</form>
+
+{% endblock content %}

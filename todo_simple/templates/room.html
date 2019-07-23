@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark md-4">
+	<a class="navbar-brand" href="#">{{ room.title }}</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expand="true" aria-label="Toggle navigation">
+		<span class=navbar-toggler-icon></span>
+	</button>
+	<div class="navbar-collapse" id="navbarCollapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="{% url 'home' %}">
+					Home
+				</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="#">
+					+Prime
+					<span class="se-only"></span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'logout' %}">
+					Log Out
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock header %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="alert alert-secondary" role="alert">
+		<div class="row">
+			<div class="col-sm-4">
+				{% if room.position_1 != '' %}
+				<div class="alert alert-primary" role="alert">
+					1: {{ room.position_1 }}
+				</div>
+				{% endif %}
+			</div>
+			<div class="col-sm-4">
+				{% if room.position_2 != '' %}
+				<div class="alert alert-success" role="alert">
+					2: {{ room.position_2 }}
+				</div>
+				{% endif %}
+			</div>
+			<div class="col-sm-4">
+				{% if room.position_3 != '' %}
+				<div class="alert alert-danger" role="alert">
+					3: {{ room.position_3 }}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				{% if room.position_4 != '' %}
+				<div class="alert alert-warning" role="alert">
+					4: {{ room.position_4 }}
+				</div>
+				{% endif %}
+			</div>
+			<div class="col-sm-4">
+				{% if room.position_5 != '' %}
+				<div class="alert alert-dark" role="alert">
+					5: {{ room.position_5 }}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	{% for chat in chat_list %}
+		{% if chat.room_id == room.pk  %}
+		<div class="row">
+			<div class="col-sm-11">
+				<div class="alert alert-{{ chat.priority }}" role="alert">
+					{{ chat.content }}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+</div>
+{% endblock content %}

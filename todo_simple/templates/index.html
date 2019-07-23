@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Welcom to TODO!
+{% endblock title %}
+
+{% block content %}
+<dev class="container">
+	<dev class="row">
+		<div class="col-4" id="column1">
+			<a href="{% url 'general_signup' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">一般ユーザー登録</a>
+		</div>
+		<div class="col-4" id="column1">
+			<a href="{% url 'login' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">ログイン</a>
+		</div>
+		<div class="col-4" id="column1">
+			<a href="{% url 'prime_signup' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">プライムユーザー登録</a>
+		</div>
+	</dev>
+</dev>
+{% endblock content %}
