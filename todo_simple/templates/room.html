@@ -31,7 +31,7 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'ChatCreate' %}">
-					OutPut
+					Output
 				</a>
 			</li>
 		</ul>
@@ -80,7 +80,7 @@
 		{% if chat.room_id == room.pk  %}
 		<div class="row">
 			<div class="col-sm-11">
-				<div class="collapse multi-collapse" id="{{ chat.priority }}">
+				<div class="collapse multi-collapse collapse show" id="{{ chat.priority }}">
 					<div class="alert alert-{{ chat.priority }}" role="alert">
 						{{ chat.content }}
 					</div>
