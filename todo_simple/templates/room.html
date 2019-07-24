@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{% static 'room.css' %}">
+{% endblock css %}
 
 {% block header %}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark md-4">
@@ -24,6 +29,11 @@
 					Log Out
 				</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'ChatCreate' %}">
+					OutPut
+				</a>
+			</li>
 		</ul>
 	</div>
 </nav>
@@ -32,44 +42,36 @@
 
 {% block content %}
 <div class="container-fluid">
-	<div class="alert alert-secondary" role="alert">
-		<div class="row">
-			<div class="col-sm-4">
-				{% if room.position_1 != '' %}
-				<div class="alert alert-primary" role="alert">
-					1: {{ room.position_1 }}
+	<div class="sticky">
+		<div class="alert alert-secondary" role="alert">
+			<div class="row">
+				<div class="col-sm-4">
+					{% if room.position_1 != '' %}
+					<button type="button" data-toggle="collapse" data-target="#primary" aria-expanded="false" aria-controls="primary" class="btn btn-primary rounded-pill">1: {{ room.position_1 }}</button>
+					{% endif %}
 				</div>
-				{% endif %}
+				<div class="col-sm-4">
+					{% if room.position_2 != '' %}
+					<button type="button" data-toggle="collapse" data-target="#success" aria-expanded="false" aria-controls="success" class="btn btn-success rounded-pill">2: {{ room.position_2 }}</button>
+					{% endif %}
+				</div>
+				<div class="col-sm-4">
+					{% if room.position_3 != '' %}
+					<button type="button" data-toggle="collapse" data-target="#danger" aria-expanded="false" aria-controls="danger" class="btn btn-danger rounded-pill">3: {{ room.position_3 }}</button>
+					{% endif %}
+				</div>
 			</div>
-			<div class="col-sm-4">
-				{% if room.position_2 != '' %}
-				<div class="alert alert-success" role="alert">
-					2: {{ room.position_2 }}
+			<div class="row">
+				<div class="col-sm-4">
+					{% if room.position_4 != '' %}
+					<button type="button" data-toggle="collapse" data-target="#warning" aria-expanded="false" aria-controls="warning" class="btn btn-warning rounded-pill">4: {{ room.position_4 }}</button>
+					{% endif %}
 				</div>
-				{% endif %}
-			</div>
-			<div class="col-sm-4">
-				{% if room.position_3 != '' %}
-				<div class="alert alert-danger" role="alert">
-					3: {{ room.position_3 }}
+				<div class="col-sm-4">
+					{% if room.position_5 != '' %}
+					<button type="button" data-toggle="collapse" data-target="#dark" aria-expanded="false" aria-controls="dark" class="btn btn-dark rounded-pill">5: {{ room.position_5 }}</button>
+					{% endif %}
 				</div>
-				{% endif %}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4">
-				{% if room.position_4 != '' %}
-				<div class="alert alert-warning" role="alert">
-					4: {{ room.position_4 }}
-				</div>
-				{% endif %}
-			</div>
-			<div class="col-sm-4">
-				{% if room.position_5 != '' %}
-				<div class="alert alert-dark" role="alert">
-					5: {{ room.position_5 }}
-				</div>
-				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -78,12 +80,14 @@
 		{% if chat.room_id == room.pk  %}
 		<div class="row">
 			<div class="col-sm-11">
-				<div class="alert alert-{{ chat.priority }}" role="alert">
-					{{ chat.content }}
+				<div class="collapse multi-collapse" id="{{ chat.priority }}">
+					<div class="alert alert-{{ chat.priority }}" role="alert">
+						{{ chat.content }}
+					</div>
 				</div>
-				{% endif %}
 			</div>
 		</div>
+		{% endif %}
 	{% endfor %}
 </div>
 {% endblock content %}

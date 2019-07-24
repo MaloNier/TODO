@@ -87,5 +87,13 @@ def room_func(request, pk):
 class RoomCreate(CreateView):
 	template_name = 'room_create.html'
 	model = RoomModel
-	fields = {'title', 'author', 'duedate', 'position_1', 'position_2', 'position_3', 'position_4', 'position_5'}
+	fields = {'title', 'author', 'position_1', 'position_2', 'position_3', 'position_4', 'position_5'}
+	success_url = reverse_lazy('home')
+
+
+## 発言作成
+class ChatCreate(CreateView):
+	template_name = 'chat_create.html'
+	model = ChatModel
+	fields = {'room_id', 'content', 'author', 'priority'}
 	success_url = reverse_lazy('home')

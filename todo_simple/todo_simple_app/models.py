@@ -13,18 +13,17 @@ class ChatModel(models.Model):
 	content = models.TextField()
 	author = models.CharField(max_length=100)
 	priority = models.CharField(max_length=50, choices = POSITION)
-	duedate = models.DateField()
+	duedate = models.DateField(auto_now_add=True)
 
 class RoomModel(models.Model):
 	title = models.CharField(max_length=50)
 	author = models.CharField(max_length=100)
-	duedate = models.DateField()
-	position_1 = models.CharField(max_length=30, default='賛成')
-	position_2 = models.CharField(max_length=30, default='反対')
+	position_1 = models.CharField(max_length=30, default='賛成', blank=True)
+	position_2 = models.CharField(max_length=30, default='反対', blank=True)
 	position_3 = models.CharField(max_length=30, default='', blank=True)
 	position_4 = models.CharField(max_length=30, default='', blank=True)
 	position_5 = models.CharField(max_length=30, default='', blank=True)
-
+	duedate = models.DateField(auto_now_add=True)
 
 ### ユーザーモデルのカスタム
 # ユーザーマネージャー
